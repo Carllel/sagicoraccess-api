@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "ee20547c-0e1a-4ca2-9a8a-c25cadce801b",
+		"name": "Sagicor-Access-SAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20005609"
+	},
+	"item": [
+		{
+			"name": "GetToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData=pm.response.json();\r",
+							"pm.collectionVariables.set(\"BearerToken\", responseData.token);\r",
+							"pm.collectionVariables.set(\"RefreshToken\", responseData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"user@sagicor.com\",\r\n  \"password\": \"P@ssword1\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7163/api/Auth/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"Auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user@sagicor.com\",\r\n  \"password\": \"P@ssword1\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7163/api/Auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Mar 2024 22:00:39 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"9e224968-33e4-4652-b7b7-8574d048cdb9\",\n    \"userName\": \"user@sagicor.com\",\n    \"email\": \"user@sagicor.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHNhZ2ljb3IuY29tIiwianRpIjoiMTU3YzUwNDktODdmYS00NjI2LTk5NDctZWRjYWFhMTYxYjc0IiwiZW1haWwiOiJ1c2VyQHNhZ2ljb3IuY29tIiwidWlkIjoiOWUyMjQ5NjgtMzNlNC00NjUyLWI3YjctODU3NGQwNDhjZGI5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InVzZXJAc2FnaWNvci5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MTAxOTYyNDAsImlzcyI6IlNhZ2ljb3JBY2Nlc3MuQXBpIiwiYXVkIjoiU2FnaWNvckFjY2Vzc1VzZXIifQ.ieVTg6GGVKYXC2VVee65YHgzhaZDKz4Is9kEtNvZfxo\",\n    \"refreshToken\": \"VQOD6G7gdb2Lh8yhV6PrFnzBijk9R2APz13NcmDARQm/Pjcn0KBg9MjG7Xbi3VC3hvcL8wOeq4Q+gtzjGsx7xQ==\",\n    \"isLogedIn\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "RefreshToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData=pm.response.json();\r",
+							"pm.collectionVariables.set(\"BearerToken\", responseData.token);\r",
+							"pm.collectionVariables.set(\"RefreshToken\", responseData.refreshToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Token\": \"{{BearerToken}}\",\r\n    \"refreshToken\": \"{{RefreshToken}}\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7163/api/Auth/refreshtoken",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"Auth",
+						"refreshtoken"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "RefreshToken",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHNhZ2ljb3IuY29tIiwianRpIjoiMTU3YzUwNDktODdmYS00NjI2LTk5NDctZWRjYWFhMTYxYjc0IiwiZW1haWwiOiJ1c2VyQHNhZ2ljb3IuY29tIiwidWlkIjoiOWUyMjQ5NjgtMzNlNC00NjUyLWI3YjctODU3NGQwNDhjZGI5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InVzZXJAc2FnaWNvci5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MTAxOTYyNDAsImlzcyI6IlNhZ2ljb3JBY2Nlc3MuQXBpIiwiYXVkIjoiU2FnaWNvckFjY2Vzc1VzZXIifQ.ieVTg6GGVKYXC2VVee65YHgzhaZDKz4Is9kEtNvZfxo\",\r\n    \"refreshToken\": \"VQOD6G7gdb2Lh8yhV6PrFnzBijk9R2APz13NcmDARQm/Pjcn0KBg9MjG7Xbi3VC3hvcL8wOeq4Q+gtzjGsx7xQ==\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7163/api/Auth/refreshtoken",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"Auth",
+								"refreshtoken"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Mar 2024 22:03:01 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"9e224968-33e4-4652-b7b7-8574d048cdb9\",\n    \"userName\": \"user@sagicor.com\",\n    \"email\": \"user@sagicor.com\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQHNhZ2ljb3IuY29tIiwianRpIjoiMWNkYjUxYTctMzFjNC00MTg2LWJkYTgtZTg2MGYxZDEyMjhmIiwiZW1haWwiOiJ1c2VyQHNhZ2ljb3IuY29tIiwidWlkIjoiOWUyMjQ5NjgtMzNlNC00NjUyLWI3YjctODU3NGQwNDhjZGI5IiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6InVzZXJAc2FnaWNvci5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJSZWFkZXIiLCJleHAiOjE3MTAxOTYzODEsImlzcyI6IlNhZ2ljb3JBY2Nlc3MuQXBpIiwiYXVkIjoiU2FnaWNvckFjY2Vzc1VzZXIifQ.Q8PWCRXk-p1MxZYrfa-fCkLCmrGwgOMnjiDbbdMa0AY\",\n    \"refreshToken\": \"JzY3B593eeUswx1UqMiLN/Y3S4GHZAhUMny/9sbioO81qOb9FxEL6LLOLPVBjHHmp/et3TDuS8cuj3o5oF6Y7w==\",\n    \"isLogedIn\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "RegisterAccount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstName\": \"System\",\r\n  \"lastName\": \"User\",\r\n  \"email\": \"user4@sagicor.com\",\r\n  \"userName\": \"user4@sagicor.com\",\r\n  \"password\": \"P@ssword1\",\r\n  \"roles\":[\r\n    \"Reader\"\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7163/api/Auth/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"Auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "RegisterAccount",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"System\",\r\n  \"lastName\": \"User\",\r\n  \"email\": \"user4@sagicor.com\",\r\n  \"userName\": \"user4@sagicor.com\",\r\n  \"password\": \"P@ssword1\",\r\n  \"roles\":[\r\n    \"Reader\"\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7163/api/Auth/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"Auth",
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 11 Mar 2024 21:59:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"userId\": \"1171d731-73fb-4166-811a-57b52ba32e64\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetAllCategories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetAllCategories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 00:23:13 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"a8fa786e-62c3-4ec0-b4ad-00ad3269f026\",\n        \"code\": \"52017\",\n        \"description\": \"Payroll Services\"\n    },\n    {\n        \"id\": \"7ba22282-ec99-48d4-b955-01cc8395f35d\",\n        \"code\": \"54202\",\n        \"description\": \"Interest on Loans Written Off\"\n    },\n    {\n        \"id\": \"10f9dafe-b8de-4e29-bc0d-047fd1716d7e\",\n        \"code\": \"52362\",\n        \"description\": \"Collection Fees\"\n    },\n    {\n        \"id\": \"a5ed86be-ee71-47ee-9472-05b34cf84954\",\n        \"code\": \"52028\",\n        \"description\": \"Special Letter\"\n    },\n    {\n        \"id\": \"dce2a73e-e5cc-4b5a-88b1-07d731b6c702\",\n        \"code\": \"52034\",\n        \"description\": \"Research/Processing Fee\"\n    },\n    {\n        \"id\": \"7d9bb311-1675-4706-9d0b-0804514fd998\",\n        \"code\": \"52078\",\n        \"description\": \"Sale of Foreign Currency\"\n    },\n    {\n        \"id\": \"6479a313-5d6a-405b-8117-08fa3cbf6a3e\",\n        \"code\": \"67068\",\n        \"description\": \"Spec Rtl Oth Recov Lns Write Off\"\n    },\n    {\n        \"id\": \"9a7d69bd-0bc6-4202-93e9-0968b8ff17e2\",\n        \"code\": \"52636\",\n        \"description\": \"PP C/Card Annual Fee New Card\"\n    },\n    {\n        \"id\": \"003fd211-f262-46b8-a2c8-0a1f7cf1c587\",\n        \"code\": \"60474\",\n        \"description\": \"Staff Travel\"\n    },\n    {\n        \"id\": \"59defb7e-929d-4a95-b33d-0a2588594f93\",\n        \"code\": \"65324\",\n        \"description\": \"CC Fraud Recovers Issuer\"\n    },\n    {\n        \"id\": \"aec544f9-169f-416d-8a8c-0a76228d824e\",\n        \"code\": \"50000\",\n        \"description\": \"***Interest Expense\"\n    },\n    {\n        \"id\": \"04b45447-45b2-411b-93a6-0cebcec0056f\",\n        \"code\": \"65302\",\n        \"description\": \"C/CARD LOSSES-ISSUER FRAUD\"\n    },\n    {\n        \"id\": \"08622d0f-a389-456c-8b8f-0d4d71e3a516\",\n        \"code\": \"65304\",\n        \"description\": \"Sundry Losses-Other\"\n    },\n    {\n        \"id\": \"50db188b-5500-40c5-9282-0de4808057c0\",\n        \"code\": \"52242\",\n        \"description\": \"Audit Confirmation Fees\"\n    },\n    {\n        \"id\": \"e70df4b7-c9d8-4ec8-8875-0e3dceefe0ce\",\n        \"code\": \"65706\",\n        \"description\": \"Magazine/Newspapers/Periodicals\"\n    },\n    {\n        \"id\": \"021d4415-6d26-4370-9f39-0ec5fc6e5601\",\n        \"code\": \"52684\",\n        \"description\": \"PP CARD Batch Processing Fees\"\n    },\n    {\n        \"id\": \"bc5d4fe3-e931-4dcb-87c8-10d41065b02b\",\n        \"code\": \"65705\",\n        \"description\": \"Other Stationery Costs\"\n    },\n    {\n        \"id\": \"f4e920c1-3d6e-4c6d-9b64-10d83e8f438d\",\n        \"code\": \"52056\",\n        \"description\": \"Cambio Commission\"\n    },\n    {\n        \"id\": \"c1392983-0503-4d02-8feb-11871ced3056\",\n        \"code\": \"52124\",\n        \"description\": \"Chq Encashment Fee\"\n    },\n    {\n        \"id\": \"1a84d3d3-9c19-41ba-99c8-12665e335ad2\",\n        \"code\": \"52112\",\n        \"description\": \"POS Decline\"\n    },\n    {\n        \"id\": \"f7848f1c-d8e0-40bb-9561-1270440663ec\",\n        \"code\": \"61100\",\n        \"description\": \"Cleaning Expenses Office\"\n    },\n    {\n        \"id\": \"85869677-02a1-4daf-b5d2-135db62ce62b\",\n        \"code\": \"55647\",\n        \"description\": \"Int INC-Htm-Other Foreign Issues-Fr\"\n    },\n    {\n        \"id\": \"edcdb841-ffa9-4e24-9102-15070f259eca\",\n        \"code\": \"64833\",\n        \"description\": \"Acquiring Interchange Fees M/Card\"\n    },\n    {\n        \"id\": \"d01efced-5780-4217-a9f6-19bf9aabe5a0\",\n        \"code\": \"52164\",\n        \"description\": \"Mail Payment Order-Local\"\n    },\n    {\n        \"id\": \"fbc9bf4c-9b01-48c7-ab15-1b44412fd7c6\",\n        \"code\": \"64012\",\n        \"description\": \"Operating Expenses\"\n    },\n    {\n        \"id\": \"cc7e03b7-45fb-4da7-81e1-1b58d8250c1f\",\n        \"code\": \"51001\",\n        \"description\": \"Interest Income (1)\"\n    },\n    {\n        \"id\": \"345a5c68-36b7-40cd-bcb7-1ea0f428f823\",\n        \"code\": \"51005\",\n        \"description\": \"Interest Income Penalties\"\n    },\n    {\n        \"id\": \"27c7bcbd-9c7c-44cb-8496-207213290e19\",\n        \"code\": \"52128\",\n        \"description\": \"eCommerce Fees\"\n    },\n    {\n        \"id\": \"b62fa6cb-1538-4b6b-9047-2210b145fb1d\",\n        \"code\": \"52607\",\n        \"description\": \"Customer Miscellaneous Fees\"\n    },\n    {\n        \"id\": \"fd56c812-b7d3-4b4e-b2cd-22d8564c58a4\",\n        \"code\": \"64470\",\n        \"description\": \"Postage\"\n    },\n    {\n        \"id\": \"b5791884-72d9-449c-be26-248776e7427d\",\n        \"code\": \"52885\",\n        \"description\": \"MPOS Rental\"\n    },\n    {\n        \"id\": \"283443c4-45ab-4f9e-8403-2752bfd83b09\",\n        \"code\": \"64802\",\n        \"description\": \"Acquiring Interchange Fees\"\n    },\n    {\n        \"id\": \"5c3934c7-5168-4f06-8582-29ec842f0ddc\",\n        \"code\": \"52259\",\n        \"description\": \"MI Principal Repayment\"\n    },\n    {\n        \"id\": \"1ba358c3-be20-461b-95f3-2ab78c98b692\",\n        \"code\": \"65409\",\n        \"description\": \"Share Register/Secretariat\"\n    },\n    {\n        \"id\": \"569f1fd7-7e39-4b93-8b60-2d649060405d\",\n        \"code\": \"52060\",\n        \"description\": \"Uncleared Effects Fee\"\n    },\n    {\n        \"id\": \"6fcf8e56-6c27-4ebe-87e1-2d77e6a694ee\",\n        \"code\": \"64815\",\n        \"description\": \"Accommodation Expenses-Roytec\"\n    },\n    {\n        \"id\": \"05ab1881-901c-48af-bf3b-300f876f45e6\",\n        \"code\": \"52655\",\n        \"description\": \"Merchant Debit Card Fees\"\n    },\n    {\n        \"id\": \"9427d687-ccfb-4405-adad-312b55af5c5d\",\n        \"code\": \"65318\",\n        \"description\": \"Prepaid Card Fraud/Disputes\"\n    },\n    {\n        \"id\": \"65dd23df-7f62-4d10-8057-32738bdc91df\",\n        \"code\": \"52603\",\n        \"description\": \"SC Bond/Equity Trading Commission\"\n    },\n    {\n        \"id\": \"0e0e670c-11c0-4bb0-a0e3-328de4125ea5\",\n        \"code\": \"65306\",\n        \"description\": \"Losses Team Member Error/Omission\"\n    },\n    {\n        \"id\": \"ab2b9041-9f49-4e0c-960a-32cb45004d81\",\n        \"code\": \"52117\",\n        \"description\": \"Bearer Services\"\n    },\n    {\n        \"id\": \"a1e3c2f1-cf5d-4f22-aceb-3303b3a46d83\",\n        \"code\": \"52055\",\n        \"description\": \"Cheque Book Charges\"\n    },\n    {\n        \"id\": \"1224f1cb-566d-4359-9ec9-34206f42c8b1\",\n        \"code\": \"55093\",\n        \"description\": \"Int Exp 180 Day CD JMD Takeover\"\n    },\n    {\n        \"id\": \"26394882-8ecd-42d3-bc8d-34db55df8755\",\n        \"code\": \"67071\",\n        \"description\": \"Debts Written Off Credit Card\"\n    },\n    {\n        \"id\": \"11e4a3a5-4b82-4c63-a7ba-34e50d5dc04e\",\n        \"code\": \"52103\",\n        \"description\": \"RTGS Fee\"\n    },\n    {\n        \"id\": \"78d47feb-5c9a-420b-8ca1-3874fb906114\",\n        \"code\": \"51000\",\n        \"description\": \"Interest Income\"\n    },\n    {\n        \"id\": \"17a77146-d3e8-4e3e-9a9e-3963515807c9\",\n        \"code\": \"54200\",\n        \"description\": \"Loans Written Off\"\n    },\n    {\n        \"id\": \"3d46f15b-3004-48e3-bc23-3ed251178631\",\n        \"code\": \"52633\",\n        \"description\": \"C/Card Delinquency Fee\"\n    },\n    {\n        \"id\": \"783277d1-9458-4dba-bb72-3f149befa622\",\n        \"code\": \"52711\",\n        \"description\": \"Letter Of Reference\"\n    },\n    {\n        \"id\": \"c6e5ca47-63dc-4674-98ba-3fed0e5fcc61\",\n        \"code\": \"52006\",\n        \"description\": \"Additional Debit Interest\"\n    },\n    {\n        \"id\": \"dcf71272-d8fb-4b5f-bba8-427d3871e4bf\",\n        \"code\": \"52668\",\n        \"description\": \"PP/Card Annual Fee Additional Card\"\n    },\n    {\n        \"id\": \"bf9a4ada-ce15-4ba1-9756-45a86fe1c1e9\",\n        \"code\": \"52675\",\n        \"description\": \"Audit Fees\"\n    },\n    {\n        \"id\": \"22753890-2801-45f4-b42b-49e47dd748b3\",\n        \"code\": \"52016\",\n        \"description\": \"Replacement ATM Card\"\n    },\n    {\n        \"id\": \"c3007416-dbef-4692-a923-4c05cc638ad6\",\n        \"code\": \"61654\",\n        \"description\": \"Other Exp Office Expense\"\n    },\n    {\n        \"id\": \"f00792db-9dc8-4a56-8f7b-4f359ce0e9b9\",\n        \"code\": \"55038\",\n        \"description\": \"Take on Inc Mtg RES\"\n    },\n    {\n        \"id\": \"2ab19465-76ad-4a82-a1c2-4f4612f42b00\",\n        \"code\": \"52002\",\n        \"description\": \"Cheque Stop payment Charges\"\n    },\n    {\n        \"id\": \"a45a3f43-bdc6-4ecf-b41f-4fbf6a97bf88\",\n        \"code\": \"52638\",\n        \"description\": \"PP C/Card Cash Advance Fee (ATM)\"\n    },\n    {\n        \"id\": \"a39b9160-64ae-48d8-afa2-5059d304abb8\",\n        \"code\": \"55503\",\n        \"description\": \"Int EXP - Repurchase Agreements\"\n    },\n    {\n        \"id\": \"ef694901-535d-4b6a-a70a-5236863f59d6\",\n        \"code\": \"65427\",\n        \"description\": \"Foreign Bank Charges\"\n    },\n    {\n        \"id\": \"f7587fe2-6301-4173-a372-5410fdb576ab\",\n        \"code\": \"52816\",\n        \"description\": \"Trust Fees\"\n    },\n    {\n        \"id\": \"1b3539fc-b319-43a8-a625-554867a1cca5\",\n        \"code\": \"52402\",\n        \"description\": \"Cheques On Collection\"\n    },\n    {\n        \"id\": \"f0cec77d-692b-4be1-baf5-566a569ee33b\",\n        \"code\": \"55544\",\n        \"description\": \"Int Inc-OL-Deal-Discount Amort\"\n    },\n    {\n        \"id\": \"406f16ae-c611-490e-9db5-56af401f68c0\",\n        \"code\": \"52662\",\n        \"description\": \"PP/Card Interchange Fee\"\n    },\n    {\n        \"id\": \"c8a7b499-4400-48ff-91a2-56f481ac8006\",\n        \"code\": \"52251\",\n        \"description\": \"Loan Admin Fee\"\n    },\n    {\n        \"id\": \"8fecaadb-462e-455c-8130-59bba8a3c502\",\n        \"code\": \"64809\",\n        \"description\": \"Mastercard Frequent Flyer Expense\"\n    },\n    {\n        \"id\": \"361887dd-142c-4ca0-b25b-5ad5ff12335b\",\n        \"code\": \"52755\",\n        \"description\": \"Safe Keeping\"\n    },\n    {\n        \"id\": \"3b7ee22d-5697-46ba-95b4-5d8b70f09f6f\",\n        \"code\": \"63406\",\n        \"description\": \"Repair/Main-Point Of Sale Equipment\"\n    },\n    {\n        \"id\": \"0464e6ae-6f52-4a2c-8aac-5da08422db7c\",\n        \"code\": \"52048\",\n        \"description\": \"NSF Charge - Insufficient Funds\"\n    },\n    {\n        \"id\": \"597c43ee-a983-43d3-ba07-5e15e60d9e08\",\n        \"code\": \"52253\",\n        \"description\": \"Peril insurance\"\n    },\n    {\n        \"id\": \"190292c3-6a46-4fca-83f4-602238270e29\",\n        \"code\": \"52814\",\n        \"description\": \"Stock Bokerage Commission\"\n    },\n    {\n        \"id\": \"056fbfeb-c310-48e9-b450-64628601825d\",\n        \"code\": \"65010\",\n        \"description\": \"Interest Cost Intra Bank\"\n    },\n    {\n        \"id\": \"e9e86ba7-f967-425f-a683-6462fbb303a4\",\n        \"code\": \"52268\",\n        \"description\": \"Credit Fees - Credit Bureau\"\n    },\n    {\n        \"id\": \"faf0f99a-369c-4f0e-b89f-67c1f8a2bbe8\",\n        \"code\": \"52015\",\n        \"description\": \"ABM Fees\"\n    },\n    {\n        \"id\": \"eec1a911-25c8-4d09-95fc-6c98c91863a8\",\n        \"code\": \"50010\",\n        \"description\": \"Int Exp (1) - adjust prv year\"\n    },\n    {\n        \"id\": \"71e22fc0-182c-4aea-b9c6-6d8d76d006e3\",\n        \"code\": \"65711\",\n        \"description\": \"Deposit Bags\"\n    },\n    {\n        \"id\": \"25f008e2-f70f-4fab-9a5b-6dbc738f06e2\",\n        \"code\": \"52661\",\n        \"description\": \"Fees POS Rental\"\n    },\n    {\n        \"id\": \"fd289988-ca7c-4b08-b5ff-6f1f9bff6142\",\n        \"code\": \"52102\",\n        \"description\": \"Foreign Draft Commission\"\n    },\n    {\n        \"id\": \"45f818d9-da3b-4f19-a29e-6f42e0c228c5\",\n        \"code\": \"52803\",\n        \"description\": \"Misc. Fees\"\n    },\n    {\n        \"id\": \"e82a3ecb-8f6f-48a4-b0e7-6fee93c46652\",\n        \"code\": \"52178\",\n        \"description\": \"Account To Account Transfer Fee\"\n    },\n    {\n        \"id\": \"2dc43a19-ef38-4de1-94a7-7173c4d5de52\",\n        \"code\": \"67051\",\n        \"description\": \"Debts Written Off Retail Other\"\n    },\n    {\n        \"id\": \"e4af47be-2c56-4529-885b-791bdd0ecbcb\",\n        \"code\": \"52665\",\n        \"description\": \"MF Discount Amount\"\n    },\n    {\n        \"id\": \"bb9a1dd3-041f-4698-814a-79e83a307c84\",\n        \"code\": \"52600\",\n        \"description\": \"***Commission Inc on SC Other\"\n    },\n    {\n        \"id\": \"18d99505-3f48-48d5-b5c6-7a85c7bf710d\",\n        \"code\": \"52069\",\n        \"description\": \"RTGS Over The Thresfhold Fee\"\n    },\n    {\n        \"id\": \"19465afc-fb6f-4ab8-acd1-7be8dabb528f\",\n        \"code\": \"52206\",\n        \"description\": \"Commitment charge\"\n    },\n    {\n        \"id\": \"95dc8195-cfc2-47f8-a9ee-7c3792ff938f\",\n        \"code\": \"52613\",\n        \"description\": \"ABM Commission M/Card\"\n    },\n    {\n        \"id\": \"131f36d1-fa4d-4784-abc0-7d0ede1a9e7f\",\n        \"code\": \"52209\",\n        \"description\": \"Management Fees-Advances\"\n    },\n    {\n        \"id\": \"a479b8c7-3f79-4e18-8755-7df719afc7a3\",\n        \"code\": \"60705\",\n        \"description\": \"Staff Awards\"\n    },\n    {\n        \"id\": \"c1f9a4e5-2293-4aa8-9c62-7f241672a271\",\n        \"code\": \"64801\",\n        \"description\": \"Visa Cost-Issuer\"\n    },\n    {\n        \"id\": \"d3f19af4-ae68-4454-99ea-7f4c54c4a3a4\",\n        \"code\": \"55003\",\n        \"description\": \"Int Exp Regular Business Takeon\"\n    },\n    {\n        \"id\": \"cc943fbd-5ce8-4c75-82d9-7fef7010d55d\",\n        \"code\": \"64829\",\n        \"description\": \"M/Card Subscription Service/Misc\"\n    },\n    {\n        \"id\": \"e75c33a2-fee7-4966-9e30-811490e77e55\",\n        \"code\": \"52664\",\n        \"description\": \"PP/Card Other Fees\"\n    },\n    {\n        \"id\": \"a9c8b5a4-56a2-485d-be1f-8595f7468a92\",\n        \"code\": \"52105\",\n        \"description\": \"Outward SWIFT Charge\"\n    },\n    {\n        \"id\": \"81789234-6cd5-45a7-a7ff-85f43ecc30c1\",\n        \"code\": \"65213\",\n        \"description\": \"C/Card Other Expense\"\n    },\n    {\n        \"id\": \"60caaad6-74af-448c-b693-87f7e7eeb19e\",\n        \"code\": \"52257\",\n        \"description\": \"Mtg Creditor life Insurance\"\n    },\n    {\n        \"id\": \"85659566-ef32-4631-89a5-88dd8815d39d\",\n        \"code\": \"52110\",\n        \"description\": \"Other Swift Charges\"\n    },\n    {\n        \"id\": \"9d628a59-3f4b-4c83-8066-8a087585a9a6\",\n        \"code\": \"52004\",\n        \"description\": \"Monthly Service Charge\"\n    },\n    {\n        \"id\": \"fa22d24e-b12d-4df0-8d38-8c00378a43e0\",\n        \"code\": \"52027\",\n        \"description\": \"Credit Reports\"\n    },\n    {\n        \"id\": \"641b22f9-c0ff-4efa-8db7-8d074a2ef677\",\n        \"code\": \"55300\",\n        \"description\": \"DBJ JMD Expense Takeover\"\n    },\n    {\n        \"id\": \"dccb57c5-a05c-48d3-ab91-8daf773fc163\",\n        \"code\": \"60716\",\n        \"description\": \"Medical Examinations/Supplies\"\n    },\n    {\n        \"id\": \"857d67d3-b7fe-412d-9d86-8f3559c00f63\",\n        \"code\": \"52611\",\n        \"description\": \"Interchange Fees M/Card\"\n    },\n    {\n        \"id\": \"550a5686-60ca-4f0c-b3f2-8fb07955e09a\",\n        \"code\": \"65411\",\n        \"description\": \"Other Sundry Expenses\"\n    },\n    {\n        \"id\": \"eb20f659-0353-4cc7-8c36-918c6be4c058\",\n        \"code\": \"52604\",\n        \"description\": \"Membership Fees-Visa\"\n    },\n    {\n        \"id\": \"5491df69-2675-4b9c-9441-92bb931fd644\",\n        \"code\": \"68110\",\n        \"description\": \"Oth Income Less GCT\"\n    },\n    {\n        \"id\": \"43776ff9-550f-4fb2-94df-93f09f832ae0\",\n        \"code\": \"68040\",\n        \"description\": \"Interest Earned Intra Bank\"\n    },\n    {\n        \"id\": \"0a73501c-05bb-4b4a-ba88-94d9ae82d1e5\",\n        \"code\": \"53006\",\n        \"description\": \"Market Exchange Profit\"\n    },\n    {\n        \"id\": \"26b50d89-7e65-4035-9728-95e446d064b3\",\n        \"code\": \"52018\",\n        \"description\": \"Statement Charges\"\n    },\n    {\n        \"id\": \"801caa49-75d4-4a11-bf18-982300e461ba\",\n        \"code\": \"52556\",\n        \"description\": \"Preliminary Fixed Income\"\n    },\n    {\n        \"id\": \"21e74557-024f-4d41-99d2-9976d19991e4\",\n        \"code\": \"65301\",\n        \"description\": \"Sundry Losses-Cash Short\"\n    },\n    {\n        \"id\": \"fbc8baaa-84fa-4683-b016-9a1ee278bce5\",\n        \"code\": \"52080\",\n        \"description\": \"SMS FEES\"\n    },\n    {\n        \"id\": \"fc2f20c8-afd3-4788-ad6c-9af7783d005f\",\n        \"code\": \"52063\",\n        \"description\": \"Commissions POS Merchant\"\n    },\n    {\n        \"id\": \"e51d4b73-9068-4747-9f53-9d82874a4441\",\n        \"code\": \"52113\",\n        \"description\": \"POS Purchase\"\n    },\n    {\n        \"id\": \"15385592-65c1-4557-9ee3-9efef8de1bf6\",\n        \"code\": \"64008\",\n        \"description\": \"Premium Items\"\n    },\n    {\n        \"id\": \"6005c59e-34ea-47b5-a921-9f4b32a51b70\",\n        \"code\": \"64800\",\n        \"description\": \"Visa Cost-Acquirer\"\n    },\n    {\n        \"id\": \"8966520f-01e2-4dc7-995d-9f7a9f7a4073\",\n        \"code\": \"65808\",\n        \"description\": \"Other Travel Expense\"\n    },\n    {\n        \"id\": \"525d0e9a-efa5-4f61-a8b3-9fdb551a65cf\",\n        \"code\": \"64808\",\n        \"description\": \"Mastercard Cost-Acquirer\"\n    },\n    {\n        \"id\": \"90a55567-4c64-4627-8031-a400c76c3c1f\",\n        \"code\": \"52106\",\n        \"description\": \"Interbank CIFT Charges\"\n    },\n    {\n        \"id\": \"d4356adc-b628-4043-94d6-a51178248a00\",\n        \"code\": \"65806\",\n        \"description\": \"Staff Travel-Late Work\"\n    },\n    {\n        \"id\": \"87fbd93f-89a4-4e85-9229-a65f64b2d89a\",\n        \"code\": \"51006\",\n        \"description\": \"Interest Income Penalty Prev Year\"\n    },\n    {\n        \"id\": \"595373cc-0984-4a4a-bfe9-a6c1868fb7af\",\n        \"code\": \"52733\",\n        \"description\": \"Exchange Of Coins\"\n    },\n    {\n        \"id\": \"6650cc4d-3246-4be0-9d51-a8304e16660c\",\n        \"code\": \"52075\",\n        \"description\": \"Cheque Charges (2nd Cheq etc)\"\n    },\n    {\n        \"id\": \"ca6501d0-f702-43dd-95b5-a908a4b91819\",\n        \"code\": \"62260\",\n        \"description\": \"Donations & Gifts\"\n    },\n    {\n        \"id\": \"a01ec3cb-3601-4932-be64-aaaa6b5a49ce\",\n        \"code\": \"52663\",\n        \"description\": \"PP/Card Load Fee\"\n    },\n    {\n        \"id\": \"61a0e4dd-3f93-4e59-9897-b1c5adffc4b8\",\n        \"code\": \"52023\",\n        \"description\": \"Utility Bill Charges\"\n    },\n    {\n        \"id\": \"615f2de3-b396-4bac-b3b1-b2e8b9e66f91\",\n        \"code\": \"65423\",\n        \"description\": \"Local Bank Interest And Charge\"\n    },\n    {\n        \"id\": \"bb463f71-dc59-4df4-9137-b64a403d6582\",\n        \"code\": \"53001\",\n        \"description\": \"Spot\"\n    },\n    {\n        \"id\": \"e8b80bc2-5404-4d0c-869e-b772b1c2c774\",\n        \"code\": \"50001\",\n        \"description\": \"Interest Expense (1)\"\n    },\n    {\n        \"id\": \"f104fa4a-278b-4840-b3a0-b7f54fb32ff4\",\n        \"code\": \"52037\",\n        \"description\": \"Night Depository Service\"\n    },\n    {\n        \"id\": \"29cc68ba-415d-41d7-8906-b855c77182c1\",\n        \"code\": \"52005\",\n        \"description\": \"Transaction Charges\"\n    },\n    {\n        \"id\": \"40548f33-2338-4307-8e58-b86326c5dd34\",\n        \"code\": \"60456\",\n        \"description\": \"12.5 or 25 Years Service\"\n    },\n    {\n        \"id\": \"6df42096-b8db-4c30-afea-b868ea631162\",\n        \"code\": \"52261\",\n        \"description\": \"Credit Fees Documentation\"\n    },\n    {\n        \"id\": \"7c0b7afd-41c6-4d5d-b35c-b97baa3befa7\",\n        \"code\": \"55041\",\n        \"description\": \"Takeon Exp SLJ DEP\"\n    },\n    {\n        \"id\": \"11cbac39-3846-48ad-a0bb-ba03b7f983c4\",\n        \"code\": \"52014\",\n        \"description\": \"Standing Order Fee\"\n    },\n    {\n        \"id\": \"a58c074d-8805-4328-85f2-ba91ef5c1510\",\n        \"code\": \"64204\",\n        \"description\": \"Company-Owned Cars-Gas/Oil\"\n    },\n    {\n        \"id\": \"3ff7fef0-ec24-4865-b8f8-baf4893ceb23\",\n        \"code\": \"52008\",\n        \"description\": \"Interest Statement Charges\"\n    },\n    {\n        \"id\": \"fba90b66-861b-42f3-81cb-bd43987fdebb\",\n        \"code\": \"52254\",\n        \"description\": \"Loan Admin Fee\"\n    },\n    {\n        \"id\": \"e47b88e3-36c7-4233-8d40-bdc0f38a08ea\",\n        \"code\": \"64803\",\n        \"description\": \"Mastercard Cost-Issuer\"\n    },\n    {\n        \"id\": \"45f2726d-8ae2-48bc-8e67-c09350d6e0d3\",\n        \"code\": \"55413\",\n        \"description\": \"Plcmnts With Comm Banks\"\n    },\n    {\n        \"id\": \"8c1a73ec-45d2-414f-bbca-c176b46d254c\",\n        \"code\": \"67010\",\n        \"description\": \"Prov.Dbtful Mortgage-Residential\"\n    },\n    {\n        \"id\": \"80ab5685-8661-4e31-87e5-c2d0a6305f2f\",\n        \"code\": \"52033\",\n        \"description\": \"Ret'd Chq Foreign\"\n    },\n    {\n        \"id\": \"790b4030-ddcf-4d0c-b50f-c47b6e359237\",\n        \"code\": \"65310\",\n        \"description\": \"C/Card Losses - Acquirer Fraud\"\n    },\n    {\n        \"id\": \"1c0aa531-e616-4035-af5a-c5f3c3d2b760\",\n        \"code\": \"55039\",\n        \"description\": \"Take on Inc Mtg INV\"\n    },\n    {\n        \"id\": \"99dd1b94-cefe-499f-9e71-c7a47ec07723\",\n        \"code\": \"65421\",\n        \"description\": \"Commission Expense\"\n    },\n    {\n        \"id\": \"6657f4e5-d22d-4709-852a-c8ff9869c834\",\n        \"code\": \"52019\",\n        \"description\": \"Preauthorised Payment (PAP)\"\n    },\n    {\n        \"id\": \"bcd9bbc4-2005-492f-b19c-cc15a43c5348\",\n        \"code\": \"52703\",\n        \"description\": \"Certificate Of Balance\"\n    },\n    {\n        \"id\": \"590fb07a-aae5-489b-8eef-cc384cb6c93a\",\n        \"code\": \"61035\",\n        \"description\": \"Repairs & Maintenance\"\n    },\n    {\n        \"id\": \"573e8fb4-aeb8-4ca2-b84d-cc512991e760\",\n        \"code\": \"53505\",\n        \"description\": \"SC Realised PL Profit\"\n    },\n    {\n        \"id\": \"2bd5f9d7-4b61-4674-a59d-d0650b3050e9\",\n        \"code\": \"51010\",\n        \"description\": \"Int inc(1) - adjust prv year\"\n    },\n    {\n        \"id\": \"50ab5d94-bc29-4eba-8783-d0e68b3bfb8e\",\n        \"code\": \"64823\",\n        \"description\": \"MPGS Transaction Fee\"\n    },\n    {\n        \"id\": \"0fdac62a-5150-4625-8484-d2907bb4c28c\",\n        \"code\": \"52026\",\n        \"description\": \"Postage Fees\"\n    },\n    {\n        \"id\": \"0203fec0-3d1e-4f27-896e-d3aeca4d1819\",\n        \"code\": \"52615\",\n        \"description\": \"Late Payment Fee\"\n    },\n    {\n        \"id\": \"744e7648-5350-4c06-afbc-d43a6674368f\",\n        \"code\": \"53000\",\n        \"description\": \"***A/L Revaluation\"\n    },\n    {\n        \"id\": \"7e9da402-84ff-4a9d-94c7-d46144788559\",\n        \"code\": \"52031\",\n        \"description\": \"FX Handling Charge\"\n    },\n    {\n        \"id\": \"6bce4dc7-7132-4715-b5d5-d8305ea9dd34\",\n        \"code\": \"52125\",\n        \"description\": \"Transact Service Fee\"\n    },\n    {\n        \"id\": \"fced7d73-0ef4-40c3-8e84-d880e07a718b\",\n        \"code\": \"52101\",\n        \"description\": \"Local Draft Commision\"\n    },\n    {\n        \"id\": \"26d3cec6-52c5-4a69-9211-d9255ebea739\",\n        \"code\": \"64834\",\n        \"description\": \"EMV Debit Card Write-off\"\n    },\n    {\n        \"id\": \"b8b43d0e-a400-4dae-82e6-d98825286d73\",\n        \"code\": \"52071\",\n        \"description\": \"ACH2 Transaction Fees\"\n    },\n    {\n        \"id\": \"0ae41148-682e-4d64-b5e1-da309a50fa5c\",\n        \"code\": \"65419\",\n        \"description\": \"Stock Exchange Commissions\"\n    },\n    {\n        \"id\": \"9b30c67f-8065-404a-a2c6-da4432fdfe4a\",\n        \"code\": \"52077\",\n        \"description\": \"RTGS RECALL/AMENDMENT\"\n    },\n    {\n        \"id\": \"869c3acb-b970-4ecc-bcd8-dcc44a3b3613\",\n        \"code\": \"52812\",\n        \"description\": \"Brokerage on Securities Customer\"\n    },\n    {\n        \"id\": \"c94a37a7-fd16-4f11-a048-dcc838e6ff87\",\n        \"code\": \"65305\",\n        \"description\": \"Sundry Losses-ABM\"\n    },\n    {\n        \"id\": \"f8b74546-6074-45b3-bc83-de7b5a4a332e\",\n        \"code\": \"52750\",\n        \"description\": \"Safe Deposit Box\"\n    },\n    {\n        \"id\": \"93bac1fd-bede-422f-9c58-df6b59fa62ba\",\n        \"code\": \"68010\",\n        \"description\": \"VISA Credit Card Interest Income\"\n    },\n    {\n        \"id\": \"eeafe566-40b9-4984-ac16-dfd3d7d7bcc8\",\n        \"code\": \"52024\",\n        \"description\": \"Late Charge\"\n    },\n    {\n        \"id\": \"633af27d-0b35-4b84-9afc-e27c518b1968\",\n        \"code\": \"52127\",\n        \"description\": \"FX Income BOA\"\n    },\n    {\n        \"id\": \"17013587-0876-4ae2-a721-e393125bc8b5\",\n        \"code\": \"52043\",\n        \"description\": \"Cashing Other Bank Chq\"\n    },\n    {\n        \"id\": \"1bb0779b-0609-4f56-937a-e4915d87aebd\",\n        \"code\": \"55414\",\n        \"description\": \"Plcmnts With BOJ\"\n    },\n    {\n        \"id\": \"bc8f61da-58c6-419c-af62-e59425490f61\",\n        \"code\": \"52621\",\n        \"description\": \"Interchange Fees - Visa\"\n    },\n    {\n        \"id\": \"b3c9ece3-6cb1-492d-8bf4-e748d4b2ee99\",\n        \"code\": \"52617\",\n        \"description\": \"Cashadvance Fees-Mastercard\"\n    },\n    {\n        \"id\": \"0036f173-fe54-4405-88b6-e775e83ad773\",\n        \"code\": \"52252\",\n        \"description\": \"Loan Admin Fee Yr End\"\n    },\n    {\n        \"id\": \"190f8349-3060-42fd-aa33-e7829123932c\",\n        \"code\": \"65219\",\n        \"description\": \"Acquiring Outsourced Services\"\n    },\n    {\n        \"id\": \"2776ef8d-1dc2-495d-8904-e90293c7b339\",\n        \"code\": \"52082\",\n        \"description\": \"Swift Statement Fees\"\n    },\n    {\n        \"id\": \"86083f96-3d6f-4a64-92ed-e9ffd4602328\",\n        \"code\": \"52059\",\n        \"description\": \"Administrative Fee\"\n    },\n    {\n        \"id\": \"9f28373d-9fa0-4dd5-8dc9-eb20dd4ba517\",\n        \"code\": \"52104\",\n        \"description\": \"Return Cheque Local\"\n    },\n    {\n        \"id\": \"25237835-bf79-4739-a370-ecdc6971c750\",\n        \"code\": \"52533\",\n        \"description\": \"Corporate Finance Fees\"\n    },\n    {\n        \"id\": \"644fc944-cdb9-4f0c-bdd3-f0cb16398384\",\n        \"code\": \"52108\",\n        \"description\": \"Incoming Swift Charge\"\n    },\n    {\n        \"id\": \"897478e6-8af7-41bc-8240-f1d98aa9f78c\",\n        \"code\": \"68070\",\n        \"description\": \"Other Income Rent Received\"\n    },\n    {\n        \"id\": \"358b41f5-56ae-4d8a-b71c-f2e70c9e649e\",\n        \"code\": \"52042\",\n        \"description\": \"Miscellaneous Income\"\n    },\n    {\n        \"id\": \"009fd13c-c245-42ec-88f6-f3f143d85878\",\n        \"code\": \"61503\",\n        \"description\": \"ACH OVER THE THRH'HLD CHG\"\n    },\n    {\n        \"id\": \"69983080-9807-4ae1-931e-f4c7ceac5bbd\",\n        \"code\": \"52653\",\n        \"description\": \"Airtime Sales\"\n    },\n    {\n        \"id\": \"f1961709-7056-4841-b446-f57672462b34\",\n        \"code\": \"52115\",\n        \"description\": \"Stamp Fee\"\n    },\n    {\n        \"id\": \"fa3bbaee-394e-4235-9f8c-f79773d3c275\",\n        \"code\": \"52808\",\n        \"description\": \"Stock Exchange Fees\"\n    },\n    {\n        \"id\": \"e390b78e-f925-49c3-ace2-f7bdf5cdc466\",\n        \"code\": \"52815\",\n        \"description\": \"Coprorate Secretarial Fees\"\n    },\n    {\n        \"id\": \"b80137f4-bccc-4e1f-b12f-fa87180505d9\",\n        \"code\": \"65814\",\n        \"description\": \"Seminar Expenses\"\n    },\n    {\n        \"id\": \"3693d328-6cef-440f-8de7-fccf44ffc415\",\n        \"code\": \"52044\",\n        \"description\": \"Cash Handling Charge\"\n    },\n    {\n        \"id\": \"2147e8f7-b071-4118-926d-fcf1c165f3a5\",\n        \"code\": \"64207\",\n        \"description\": \"Company-Owned Cars-Sundry\"\n    },\n    {\n        \"id\": \"fed5c58d-f323-4881-a4ab-fd20f7df5000\",\n        \"code\": \"64810\",\n        \"description\": \"Visa Loyalty Expense Account\"\n    },\n    {\n        \"id\": \"a4c0d072-9ec9-431b-80ad-ffa746970668\",\n        \"code\": \"52168\",\n        \"description\": \"Utility Charge To The Utility\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "CreateNewPLCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"code\": \"510009\",\r\n  \"description\": \"string510009\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "CreateNewPLCategory",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"510009\",\r\n  \"description\": \"string510009\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 00:32:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Location",
+							"value": "https://localhost:7163/api/PLCategories/id/29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetPLCategoryById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories/id/7ba22282-ec99-48d4-b955-01cc8395f35d",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories",
+						"id",
+						"7ba22282-ec99-48d4-b955-01cc8395f35d"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetPLCategoryById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories/id/7ba22282-ec99-48d4-b955-01cc8395f35d",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories",
+								"id",
+								"7ba22282-ec99-48d4-b955-01cc8395f35d"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 01:01:47 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"7ba22282-ec99-48d4-b955-01cc8395f35d\",\n    \"code\": \"54202\",\n    \"description\": \"Interest on Loans Written Off\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetPLCategoryByCode",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories/code/67068",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories",
+						"code",
+						"67068"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetPLCategoryByCode",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories/code/52028",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories",
+								"code",
+								"52028"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 01:02:29 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"a5ed86be-ee71-47ee-9472-05b34cf84954\",\n    \"code\": \"52028\",\n    \"description\": \"Special Letter\"\n}"
+				}
+			]
+		},
+		{
+			"name": "UpdatePLCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"a8fa786e-62c3-4ec0-b4ad-00ad3269f026\",\r\n    \"code\": \"52017\",\r\n    \"description\": \"Payroll Services\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories/a8fa786e-62c3-4ec0-b4ad-00ad3269f026",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories",
+						"a8fa786e-62c3-4ec0-b4ad-00ad3269f026"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "UpdatePLCategory",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c\",\r\n  \"code\": \"510009\",\r\n  \"description\": \"510009 string\"\r\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories/29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories",
+								"29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 00:46:13 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "DeletePLCategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{BearerToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7163/api/PLCategories/9feebc44-02a0-41bc-70b6-08dc422bdb3c",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7163",
+					"path": [
+						"api",
+						"PLCategories",
+						"9feebc44-02a0-41bc-70b6-08dc422bdb3c"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DeletePLCategory",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "text/plain"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7163/api/PLCategories/29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7163",
+							"path": [
+								"api",
+								"PLCategories",
+								"29a9c6a8-38f0-4a4c-70b5-08dc422bdb3c"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 12 Mar 2024 00:51:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Kestrel"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BearerToken",
+			"value": "0",
+			"type": "string"
+		},
+		{
+			"key": "RefreshToken",
+			"value": "0",
+			"type": "string"
+		}
+	]
+}

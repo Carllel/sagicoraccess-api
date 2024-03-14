@@ -1,0 +1,57 @@
+﻿@page "/plcategories/"
+
+<h3>Leave Types</h3>
+
+<div class="m-2 d-flex justify-content-end">
+    <button @onclick="CreatePLCategory" class="btn btn-success">Add PL Category</button>
+</div>
+
+@if (string.IsNullOrEmpty(Message) == false)
+{
+    <div class="alert alert-danger">
+        @Message
+    </div>
+}
+
+<div clas></div>
+@if (PLCategories == null)
+{
+    <p>Loading Data...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Code
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var plCategory in PLCategories)
+            {
+                <tr>
+                    <td>@plCategory.Id </td>
+                    <td>@plCategory.Code </td>
+                    <td>@plCategory.Description </td>
+                    <td>
+                        <AuthorizeView Roles="Administrator">
+                            <button @onclick="@(() => EditPLCategory(plCategory.Id))" class="btn btn-warning">Edit</button>
+                            <button @onclick="@(() => DeletePLCategory(plCategory.Id))" class="btn btn-danger">Delete</button>
+                        </AuthorizeView>
+                        <button @onclick="@(() => DetailsPLCategory(plCategory.Id))" class="btn btn-info">Details</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
